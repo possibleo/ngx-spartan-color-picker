@@ -6,9 +6,12 @@ import { SiteTocNav } from './site-toc-nav';
   selector: 'api-page',
   imports: [RouterLink, SiteTocNav],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <div class="site-container pb-24 pt-10 lg:pt-14">
-      <div class="max-w-2xl">
+      <div class="min-w-0 max-w-2xl">
         <p class="site-kicker">
           <a routerLink="/" class="hover:text-foreground transition-colors">Home</a>
           <span class="mx-2 text-border" aria-hidden="true">/</span>
@@ -32,7 +35,7 @@ import { SiteTocNav } from './site-toc-nav';
         </p>
       </div>
 
-      <div class="mt-12 grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-14">
+      <div class="site-page-grid">
         <site-toc-nav basePath="/api" [items]="nav" ariaLabel="API sections" />
 
         <div class="min-w-0">
@@ -57,7 +60,7 @@ import { SiteTocNav } from './site-toc-nav';
               Shared by the popover picker and inline panel unless noted. Models support
               two-way binding with <code class="site-inline-code">[()]</code>.
             </p>
-            <div class="mt-6 overflow-x-auto">
+            <div class="mt-6 min-w-0 overflow-x-auto">
               <table class="w-full min-w-[40rem] border-collapse text-left text-sm">
                 <thead>
                   <tr class="border-b border-border text-muted-foreground">
@@ -89,7 +92,7 @@ import { SiteTocNav } from './site-toc-nav';
 
           <section id="outputs" class="scroll-mt-28 border-t border-border py-14">
             <h2 class="text-xl font-semibold tracking-tight sm:text-2xl">Outputs</h2>
-            <div class="mt-6 overflow-x-auto">
+            <div class="mt-6 min-w-0 overflow-x-auto">
               <table class="w-full min-w-[36rem] border-collapse text-left text-sm">
                 <thead>
                   <tr class="border-b border-border text-muted-foreground">
@@ -121,7 +124,7 @@ import { SiteTocNav } from './site-toc-nav';
               Icons are never baked in. Text labels are the default; project a template when
               you want Lucide, Material, or anything else.
             </p>
-            <div class="mt-6 overflow-x-auto">
+            <div class="mt-6 min-w-0 overflow-x-auto">
               <table class="w-full min-w-[32rem] border-collapse text-left text-sm">
                 <thead>
                   <tr class="border-b border-border text-muted-foreground">
@@ -146,7 +149,7 @@ import { SiteTocNav } from './site-toc-nav';
 
           <section id="types" class="scroll-mt-28 border-t border-border py-14">
             <h2 class="text-xl font-semibold tracking-tight sm:text-2xl">Types</h2>
-            <div class="mt-6 overflow-x-auto">
+            <div class="mt-6 min-w-0 overflow-x-auto">
               <table class="w-full min-w-[32rem] border-collapse text-left text-sm">
                 <thead>
                   <tr class="border-b border-border text-muted-foreground">
@@ -288,7 +291,7 @@ export class ApiPage {
       name: 'eyedropper',
       type: 'boolean',
       default: 'false',
-      description: 'Show screen eyedropper when the EyeDropper API is available.',
+      description: 'Show the eyedropper control. Works on desktop Chrome/Edge; disabled elsewhere (no EyeDropper API on Android Chrome or Safari).',
     },
     {
       name: 'eyedropperLabel',

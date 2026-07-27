@@ -44,7 +44,7 @@ import { SiteHeader } from './site-header';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'block min-h-dvh',
+    class: 'block w-full min-w-0 max-w-full overflow-x-clip',
   },
   template: `
     <a
@@ -54,7 +54,7 @@ import { SiteHeader } from './site-header';
       Skip to content
     </a>
 
-    <div class="relative min-h-dvh">
+    <div class="relative min-h-dvh w-full min-w-0 max-w-full">
       <site-header
         [style]="style()"
         [isDark]="isDark()"
@@ -63,7 +63,7 @@ import { SiteHeader } from './site-header';
         (themeToggle)="toggleTheme()"
       />
 
-      <main id="content" tabindex="-1">
+      <main id="content" class="w-full min-w-0 max-w-full" tabindex="-1">
         <router-outlet />
       </main>
 

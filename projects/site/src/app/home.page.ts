@@ -25,6 +25,9 @@ function pickHeroPreset(): string {
   selector: 'home-page',
   imports: [SiteHero, SiteInstall, SitePlayground, SiteUsage],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <div class="relative">
       <div

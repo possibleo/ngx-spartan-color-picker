@@ -35,9 +35,12 @@ import { SiteTocNav } from './site-toc-nav';
     SiteTocNav,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <div class="site-container pb-24 pt-10 lg:pt-14">
-      <div class="max-w-2xl">
+      <div class="min-w-0 max-w-2xl">
         <p class="site-kicker">
           <a routerLink="/" class="hover:text-foreground transition-colors">Home</a>
           <span class="mx-2 text-border" aria-hidden="true">/</span>
@@ -51,10 +54,10 @@ import { SiteTocNav } from './site-toc-nav';
         </p>
       </div>
 
-      <div class="mt-12 grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-14">
+      <div class="site-page-grid">
         <site-toc-nav basePath="/examples" [items]="nav" ariaLabel="Example sections" />
 
-        <div>
+        <div class="min-w-0">
           <site-example
             id="popover"
             title="Popover"
@@ -62,7 +65,7 @@ import { SiteTocNav } from './site-toc-nav';
             body="Use two-way value binding for uncontrolled settings UIs. Enable alpha when you need translucent brand or overlay colors."
             [snippet]="snippets.popover"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex min-w-0 flex-wrap items-center gap-3">
               <hlm-color-picker [(value)]="popoverColor" [alpha]="true" />
               <code class="site-inline-code text-xs">{{ popoverColor() }}</code>
             </div>
@@ -93,7 +96,7 @@ import { SiteTocNav } from './site-toc-nav';
             body="Same panel API as the popover — useful for dedicated theme pages or side drawers."
             [snippet]="snippets.inlinePanel"
           >
-            <div class="w-fit max-w-full">
+            <div class="w-full max-w-64">
               <hlm-color-picker-panel [(value)]="inlineColor" [alpha]="true" />
             </div>
           </site-example>
@@ -178,7 +181,7 @@ import { SiteTocNav } from './site-toc-nav';
                 </button>
               }
             </div>
-            <div class="mt-5 w-fit max-w-full">
+            <div class="mt-5 w-full max-w-64">
               <hlm-color-picker-panel
                 [(value)]="layoutColor"
                 [layout]="layoutDemo()"
@@ -229,10 +232,10 @@ import { SiteTocNav } from './site-toc-nav';
             id="eyedropper"
             title="Eyedropper"
             lead="Opt-in screen color sampling via the EyeDropper API when the browser supports it."
-            body="Default label is text (“Eyedropper”). Project ng-template hlmColorEyedropper for an icon — the library never assumes a specific icon set."
+            body="Default label is text (“Eyedropper”). Project ng-template hlmColorEyedropper for an icon — the library never assumes a specific icon set. The EyeDropper API is desktop Chromium only (Chrome/Edge) — not Chrome on Android or Safari — so the control stays visible but disabled there."
             [snippet]="snippets.eyedropper"
           >
-            <div class="w-fit max-w-full">
+            <div class="w-full max-w-64">
               <hlm-color-picker-panel [(value)]="eyedropperColor" [eyedropper]="true" [alpha]="true">
                 <ng-template hlmColorEyedropper>
                   <ng-icon name="lucidePipette" size="16" />
@@ -281,7 +284,7 @@ import { SiteTocNav } from './site-toc-nav';
             body="Bind contrastAgainst (two-way). The panel shows pass/fail against the current value — useful for text and UI chrome in settings."
             [snippet]="snippets.contrast"
           >
-            <div class="w-fit max-w-full">
+            <div class="w-full max-w-64">
               <hlm-color-picker-panel
                 [(value)]="contrastColor"
                 [(contrastAgainst)]="contrastAgainst"

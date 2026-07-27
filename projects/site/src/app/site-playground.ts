@@ -19,6 +19,9 @@ interface ThemeModel {
   selector: 'site-playground',
   imports: [FormField, HlmButton, HlmColorPicker, NgIcon, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <section id="playground" class="site-section bg-muted/30" aria-labelledby="playground-heading">
       <div class="site-container">
@@ -33,9 +36,9 @@ interface ThemeModel {
           <div class="site-card">
             <h3 class="text-sm font-medium">Popover</h3>
             <p class="text-muted-foreground mt-1 text-sm">Click the swatch to open.</p>
-            <div class="mt-5 flex items-center gap-3">
+            <div class="mt-5 flex min-w-0 items-center gap-3">
               <hlm-color-picker [(value)]="playgroundColor" [alpha]="true" />
-              <code class="site-inline-code text-xs">{{ playgroundColor() }}</code>
+              <code class="site-inline-code min-w-0 truncate text-xs">{{ playgroundColor() }}</code>
             </div>
           </div>
 
@@ -45,9 +48,9 @@ interface ThemeModel {
               Bound with <code class="site-inline-code">[formField]</code>.
             </p>
             <form class="mt-5 flex flex-col gap-3" (submit)="$event.preventDefault()">
-              <div class="flex items-center gap-3">
+              <div class="flex min-w-0 items-center gap-3">
                 <hlm-color-picker [formField]="themeForm().color" ariaLabel="Theme color" />
-                <code class="site-inline-code text-xs">{{ themeModel().color }}</code>
+                <code class="site-inline-code min-w-0 truncate text-xs">{{ themeModel().color }}</code>
               </div>
               @if (themeForm().color().invalid()) {
                 <p class="text-destructive text-xs" role="alert">Enter a valid color.</p>

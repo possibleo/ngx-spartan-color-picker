@@ -7,15 +7,18 @@ import {
 @Component({
   selector: 'site-example',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
-    <article [id]="id()" class="scroll-mt-28 border-t border-border py-14 first:border-t-0 first:pt-0">
-      <div class="max-w-2xl">
-        <h2 class="text-foreground text-xl font-semibold tracking-tight sm:text-2xl">
+    <article [id]="id()" class="w-full min-w-0 scroll-mt-28 border-t border-border py-14 first:border-t-0 first:pt-0">
+      <div class="min-w-0 max-w-2xl">
+        <h2 class="text-foreground text-balance text-xl font-semibold tracking-tight sm:text-2xl">
           {{ title() }}
         </h2>
-        <p class="text-muted-foreground mt-2 text-base leading-relaxed">{{ lead() }}</p>
+        <p class="text-muted-foreground mt-2 text-pretty text-base leading-relaxed">{{ lead() }}</p>
         @if (body()) {
-          <p class="text-muted-foreground mt-3 text-sm leading-relaxed">{{ body() }}</p>
+          <p class="text-muted-foreground mt-3 text-pretty text-sm leading-relaxed">{{ body() }}</p>
         }
       </div>
 
@@ -24,7 +27,7 @@ import {
       </div>
 
       @if (snippet()) {
-        <pre class="site-code-block mt-4 overflow-x-auto text-xs" tabindex="0"><code>{{ snippet() }}</code></pre>
+        <pre class="site-code-block mt-4" tabindex="0"><code>{{ snippet() }}</code></pre>
       }
     </article>
   `,

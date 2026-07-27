@@ -5,6 +5,9 @@ import { RouterLink } from '@angular/router';
   selector: 'site-install',
   imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <section id="install" class="site-section bg-muted/30" aria-labelledby="install-heading">
       <div class="site-container">
@@ -15,29 +18,17 @@ import { RouterLink } from '@angular/router';
           <em>your</em> theme tokens — no style id to configure.
         </p>
 
-        <div class="mt-8 overflow-x-auto">
-          <table class="w-full min-w-[28rem] border-collapse text-left text-sm">
-            <caption class="visually-hidden">Peer and host requirements</caption>
-            <thead>
-              <tr class="border-b border-border text-muted-foreground">
-                <th scope="col" class="py-2 pr-4 font-medium">Requirement</th>
-                <th scope="col" class="py-2 pr-4 font-medium">Version</th>
-                <th scope="col" class="py-2 font-medium">Notes</th>
-              </tr>
-            </thead>
-            <tbody class="align-top">
-              @for (row of requirements; track row.name) {
-                <tr class="border-b border-border/70">
-                  <td class="py-3 pr-4 whitespace-nowrap font-medium">{{ row.name }}</td>
-                  <td class="text-muted-foreground py-3 pr-4 font-mono text-xs whitespace-nowrap">
-                    {{ row.version }}
-                  </td>
-                  <td class="text-muted-foreground py-3">{{ row.notes }}</td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
+        <ul class="mt-8 m-0 flex list-none flex-col gap-3 p-0" role="list">
+          @for (row of requirements; track row.name) {
+            <li class="rounded-[var(--radius)] border border-border bg-card/40 px-4 py-3">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <p class="min-w-0 text-sm font-medium">{{ row.name }}</p>
+                <code class="text-muted-foreground font-mono text-xs">{{ row.version }}</code>
+              </div>
+              <p class="text-muted-foreground mt-1 text-sm leading-relaxed">{{ row.notes }}</p>
+            </li>
+          }
+        </ul>
 
         <p class="text-muted-foreground mt-6 text-sm">
           New to Spartan? Start at

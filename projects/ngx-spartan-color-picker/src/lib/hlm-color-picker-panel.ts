@@ -71,7 +71,7 @@ declare global {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'flex w-64 max-w-full flex-col gap-3 text-popover-foreground',
+    class: 'flex w-full max-w-64 flex-col gap-3 text-popover-foreground',
     role: 'group',
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.aria-disabled]': 'disabled() ? "true" : null',
@@ -104,17 +104,18 @@ declare global {
 
     @if (showPickerSection()) {
       <div
+        class="flex flex-col gap-3"
         [attr.role]="layout() === 'pages' ? 'tabpanel' : null"
         [attr.id]="layout() === 'pages' ? pagePanelId('picker') : null"
         [attr.aria-labelledby]="layout() === 'pages' ? pageTabId('picker') : null"
       >
-      @if (eyedropper() && eyedropperSupported()) {
-        <div class="flex justify-end">
+      @if (eyedropper()) {
+        <div class="flex flex-col items-end gap-1">
           <button
             type="button"
-            [attr.aria-label]="eyedropperAriaLabel()"
+            [attr.aria-label]="eyedropperButtonAriaLabel()"
             [class]="eyedropperClass()"
-            [disabled]="disabled() || eyedropperBusy()"
+            [disabled]="disabled() || eyedropperBusy() || !eyedropperSupported()"
             (click)="pickFromScreen()"
           >
             @if (resolvedEyedropperTemplate(); as tpl) {
@@ -123,6 +124,11 @@ declare global {
               {{ eyedropperLabel() }}
             }
           </button>
+          @if (!eyedropperSupported()) {
+            <p class="text-muted-foreground max-w-48 text-right text-[0.65rem] leading-snug">
+              {{ eyedropperUnsupportedHint }}
+            </p>
+          }
         </div>
       }
 
@@ -389,6 +395,14 @@ export class HlmColorPickerPanel {
     () => isPlatformBrowser(this.platformId) && typeof window.EyeDropper === 'function',
   );
   protected readonly eyedropperBusy = signal(false);
+  protected readonly eyedropperUnsupportedHint =
+    'Not available in this browser (desktop Chrome/Edge only)';
+
+  protected readonly eyedropperButtonAriaLabel = computed(() =>
+    this.eyedropperSupported()
+      ? this.eyedropperAriaLabel()
+      : `${this.eyedropperAriaLabel()} (not supported in this browser)`,
+  );
 
   protected readonly eyedropperClass = computed(() => {
     const iconOnly = !!this.resolvedEyedropperTemplate();

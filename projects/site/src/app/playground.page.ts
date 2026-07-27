@@ -41,12 +41,12 @@ type FeatureKey =
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'block',
+    class: 'block w-full',
     style: 'accent-color: var(--color-primary, var(--primary));',
   },
   template: `
     <div class="site-container pb-24 pt-10 lg:pt-14">
-      <div class="max-w-2xl">
+      <div class="min-w-0 max-w-2xl">
         <p class="site-kicker">
           <a routerLink="/" class="hover:text-foreground transition-colors">Home</a>
           <span class="mx-2 text-border" aria-hidden="true">/</span>
@@ -59,8 +59,8 @@ type FeatureKey =
         </p>
       </div>
 
-      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(16rem,20rem)_minmax(0,1fr)] lg:gap-10">
-        <fieldset class="site-card m-0 min-w-0 self-start border-0 p-5 shadow-sm">
+      <div class="mt-10 grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-10">
+        <fieldset class="site-card m-0 min-w-0 self-start border-0 p-4 shadow-sm sm:p-5">
           <legend class="visually-hidden">Playground options</legend>
           <p class="mb-4 text-sm font-medium" aria-hidden="true">Options</p>
 
@@ -222,7 +222,7 @@ type FeatureKey =
                 <span class="text-muted-foreground text-sm">Open the swatch to edit</span>
               </div>
             } @else {
-              <div class="w-fit max-w-full">
+              <div class="w-full max-w-64">
                 <hlm-color-picker-panel
                   [(value)]="color"
                   [(format)]="format"
@@ -288,7 +288,7 @@ export class PlaygroundPage {
   readonly featureOptions: readonly { key: FeatureKey; label: string; hint: string }[] = [
     { key: 'alpha', label: 'Alpha', hint: 'Opacity slider + alpha in output' },
     { key: 'confirmation', label: 'Confirmation', hint: 'Apply / Discard draft workflow' },
-    { key: 'eyedropper', label: 'Eyedropper', hint: 'Screen sampling when supported' },
+    { key: 'eyedropper', label: 'Eyedropper', hint: 'Desktop Chrome/Edge only' },
     { key: 'copy', label: 'Copy', hint: 'Clipboard button + (copied) event' },
     { key: 'contrast', label: 'Contrast', hint: 'WCAG checks vs an editable color' },
     { key: 'presets', label: 'Presets', hint: 'Show the default swatch row' },
@@ -312,7 +312,7 @@ export class PlaygroundPage {
   readonly features = signal<Record<FeatureKey, boolean>>({
     alpha: true,
     confirmation: false,
-    eyedropper: false,
+    eyedropper: true,
     copy: false,
     contrast: false,
     presets: true,

@@ -66,6 +66,8 @@
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
@@ -74,6 +76,17 @@
     font-size: 1rem;
     line-height: 1.6;
     letter-spacing: -0.011em;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  app-root,
+  main,
+  #content {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   code,
@@ -82,15 +95,23 @@
     font-family: var(--font-mono);
     font-size: 0.875em;
   }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 @layer components {
   .site-container {
-    @apply mx-auto w-full max-w-5xl px-6;
+    @apply mx-auto box-border w-full min-w-0 max-w-5xl px-4 sm:px-6;
   }
 
   .site-section {
-    @apply border-t border-border py-20;
+    @apply border-t border-border py-14 sm:py-20;
   }
 
   .site-kicker {
@@ -98,7 +119,7 @@
   }
 
   .site-heading {
-    @apply text-foreground text-3xl font-semibold tracking-tight sm:text-4xl;
+    @apply text-foreground text-balance text-3xl font-semibold tracking-tight sm:text-4xl;
     letter-spacing: -0.03em;
   }
 
@@ -107,21 +128,41 @@
   }
 
   .site-lead {
-    @apply text-muted-foreground mt-4 max-w-2xl text-lg leading-relaxed;
+    @apply text-muted-foreground mt-4 max-w-2xl text-pretty text-base leading-relaxed sm:text-lg;
+    overflow-wrap: break-word;
   }
 
   .site-code-block {
-    @apply bg-muted/50 mt-8 overflow-x-auto rounded-lg border border-border p-5 text-sm leading-relaxed;
+    @apply bg-muted/50 mt-8 box-border block w-full min-w-0 max-w-full overflow-x-auto rounded-lg border border-border p-3 text-xs leading-relaxed sm:p-5 sm:text-sm;
     font-family: var(--font-mono);
+  }
+
+  .site-code-block code {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    white-space: pre;
+    overflow-wrap: normal;
   }
 
   .site-card {
-    @apply bg-card rounded-xl border border-border p-6 shadow-sm;
+    @apply bg-card box-border w-full min-w-0 max-w-full rounded-xl border border-border p-4 shadow-sm sm:p-6;
   }
 
   .site-inline-code {
-    @apply bg-muted text-foreground rounded px-1.5 py-0.5 text-[0.8125rem] font-medium;
+    @apply bg-muted text-foreground inline-block max-w-full rounded px-1.5 py-0.5 text-[0.8125rem] font-medium;
     font-family: var(--font-mono);
+    overflow-wrap: anywhere;
+  }
+
+  .site-page-grid {
+    @apply mt-10 grid min-w-0 grid-cols-1 gap-8 lg:mt-12 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-14;
+  }
+
+  .site-page-grid > * {
+    min-width: 0;
+    max-width: 100%;
   }
 }
 

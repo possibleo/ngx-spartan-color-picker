@@ -6,6 +6,9 @@ import { HlmButton } from '@spartan-ng/helm/button';
   selector: 'site-usage',
   imports: [HlmButton, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
     <section id="usage" class="site-section" aria-labelledby="usage-heading">
       <div class="site-container">

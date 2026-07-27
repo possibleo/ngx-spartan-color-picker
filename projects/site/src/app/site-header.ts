@@ -21,12 +21,15 @@ import type { SpartanStyleOption } from './spartan-styles';
   selector: 'site-header',
   imports: [HlmButton, HlmSelectImports, NgIcon, RouterLink, RouterLinkActive],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
-    <header class="border-border/60 relative z-20 border-b">
-      <div class="site-container flex items-center justify-between gap-3 py-4">
+    <header class="border-border/60 bg-background/80 relative z-20 w-full border-b backdrop-blur-md">
+      <div class="site-container flex min-w-0 items-center justify-between gap-2 py-3 sm:gap-3 sm:py-4">
         <a
           routerLink="/"
-          class="text-foreground shrink-0 text-sm font-semibold tracking-tight"
+          class="text-foreground min-w-0 shrink truncate text-sm font-semibold tracking-tight"
           (click)="closeMenu()"
         >
           Spartan Color
@@ -45,7 +48,7 @@ import type { SpartanStyleOption } from './spartan-styles';
           }
         </nav>
 
-        <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex shrink-0 items-center gap-1 sm:gap-2">
           <hlm-select
             class="hidden w-36 sm:block sm:w-40"
             [value]="style()"

@@ -18,14 +18,20 @@ export interface SiteTocItem {
   selector: 'site-toc-nav',
   imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full min-w-0',
+  },
   template: `
-    <nav class="lg:sticky lg:top-8 lg:self-start" [attr.aria-label]="ariaLabel()">
+    <nav class="w-full min-w-0 lg:sticky lg:top-8 lg:self-start" [attr.aria-label]="ariaLabel()">
       <p class="text-muted-foreground mb-3 text-xs font-medium tracking-wide uppercase">
         On this page
       </p>
-      <ul class="flex list-none flex-row flex-wrap gap-2 p-0 lg:flex-col lg:gap-1" role="list">
+      <ul
+        class="m-0 flex list-none flex-row flex-wrap gap-1.5 p-0 lg:flex-col lg:gap-1"
+        role="list"
+      >
         @for (item of items(); track item.id) {
-          <li>
+          <li class="min-w-0">
             <a
               [routerLink]="basePath()"
               [fragment]="item.id"

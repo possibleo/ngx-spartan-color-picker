@@ -1,6 +1,6 @@
 {
   "name": "ngx-spartan-color-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Spartan NG–compatible color picker for Angular. Peers on @spartan-ng/brain and uses Spartan theme tokens.",
   "license": "MIT",
   "homepage": "https://github.com/possibleo/ngx-spartan-color-picker/blob/main/README.md",

@@ -5,8 +5,11 @@ import { RouterLink } from '@angular/router';
   selector: 'site-footer',
   imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
   template: `
-    <footer class="border-t border-border">
+    <footer class="border-t border-border w-full">
       <div
         class="site-container flex flex-col gap-4 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between"
       >
