@@ -1,0 +1,30 @@
+{
+  "name": "ngx-spartan-color-picker",
+  "version": "0.1.0",
+  "description": "Spartan NG–compatible color picker for Angular. Peers on @spartan-ng/brain and uses Spartan theme tokens.",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "color-picker",
+    "spartan",
+    "spartan-ng",
+    "helm",
+    "tailwind",
+    "accessibility"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/possibleo/ngx-spartan-color-picker.git"
+  },
+  "peerDependencies": {
+    "@angular/cdk": ">=19.0.0",
+    "@angular/common": ">=19.0.0",
+    "@angular/core": ">=19.0.0",
+    "@angular/forms": ">=19.0.0",
+    "@spartan-ng/brain": ">=1.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

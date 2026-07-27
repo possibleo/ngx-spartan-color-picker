@@ -1,0 +1,89 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'site-install',
+  imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <section id="install" class="site-section bg-muted/30" aria-labelledby="install-heading">
+      <div class="site-container">
+        <p class="site-kicker">Setup</p>
+        <h2 id="install-heading" class="site-heading mt-2">Install</h2>
+        <p class="site-lead text-base">
+          Community package for apps that already run Spartan. It peers on Brain and follows
+          <em>your</em> theme tokens — no style id to configure.
+        </p>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full min-w-[28rem] border-collapse text-left text-sm">
+            <caption class="visually-hidden">Peer and host requirements</caption>
+            <thead>
+              <tr class="border-b border-border text-muted-foreground">
+                <th scope="col" class="py-2 pr-4 font-medium">Requirement</th>
+                <th scope="col" class="py-2 pr-4 font-medium">Version</th>
+                <th scope="col" class="py-2 font-medium">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="align-top">
+              @for (row of requirements; track row.name) {
+                <tr class="border-b border-border/70">
+                  <td class="py-3 pr-4 whitespace-nowrap font-medium">{{ row.name }}</td>
+                  <td class="text-muted-foreground py-3 pr-4 font-mono text-xs whitespace-nowrap">
+                    {{ row.version }}
+                  </td>
+                  <td class="text-muted-foreground py-3">{{ row.notes }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-muted-foreground mt-6 text-sm">
+          New to Spartan? Start at
+          <a
+            class="text-foreground underline underline-offset-4"
+            href="https://spartan.ng/documentation/installation"
+            target="_blank"
+            rel="noreferrer"
+            >spartan.ng/installation</a
+          >, then:
+        </p>
+        <pre class="site-code-block" tabindex="0"><code>npm i ngx-spartan-color-picker</code></pre>
+
+        <p class="text-muted-foreground mt-6 text-sm">
+          Full API tables:
+          <a routerLink="/api" class="text-foreground underline underline-offset-4">API reference</a>
+          · try options in the
+          <a routerLink="/playground" class="text-foreground underline underline-offset-4"
+            >playground</a
+          >.
+        </p>
+      </div>
+    </section>
+  `,
+})
+export class SiteInstall {
+  readonly requirements = [
+    {
+      name: 'Angular',
+      version: '≥ 19',
+      notes: 'Signal Forms ([formField]) need Angular 21+. Tested on 22.',
+    },
+    {
+      name: '@spartan-ng/brain',
+      version: '≥ 1.0',
+      notes: 'Popover and slider primitives.',
+    },
+    {
+      name: 'Tailwind CSS',
+      version: 'v4',
+      notes: 'With Spartan theme CSS variables and --radius.',
+    },
+    {
+      name: 'Spartan theme',
+      version: 'host app',
+      notes: 'Picker matches your baked style via tokens — demo style switcher is site-only.',
+    },
+  ] as const;
+}

@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "ngx-spartan-color-picker": ["./projects/ngx-spartan-color-picker/src/public-api.ts"],
+      "@spartan-ng/helm/popover": ["./libs/ui/popover/src/index.ts"],
+      "@spartan-ng/helm/utils": ["./libs/ui/utils/src/index.ts"],
+      "@spartan-ng/helm/button": ["./libs/ui/button/src/index.ts"],
+      "@spartan-ng/helm/input": ["./libs/ui/input/src/index.ts"],
+      "@spartan-ng/helm/label": ["./libs/ui/label/src/index.ts"],
+      "@spartan-ng/helm/select": ["./libs/ui/select/src/index.ts"]
+    },
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/site/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/site/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ngx-spartan-color-picker/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-spartan-color-picker/tsconfig.spec.json"
+    }
+  ]
+}
